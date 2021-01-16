@@ -11,6 +11,8 @@ deb-src http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib
     && apt-get install -y \
     nodejs \
     npm \
+    zip \
+    unzip \
     libwebp-dev \
     build-essential \
     libmagickcore-dev \
@@ -28,4 +30,5 @@ deb-src http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib
     && pecl install mcrypt \
     && docker-php-ext-enable redis imagick mcrypt 
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/

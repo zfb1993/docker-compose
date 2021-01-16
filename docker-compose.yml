@@ -15,7 +15,6 @@ services:
           - "MYSQL_PASSWORD=zfb19930423"
    php-fpm:  
        build: ./php
-       image: php:7.4
        restart: always
        volumes: 
           - ./new-admin:/var/www/html
@@ -40,6 +39,10 @@ services:
           - ./nginx/access.log:/var/www/access.log
        depends_on: 
           - php-fpm
+   node:
+       image: node:latest
+       volumes: 
+          - ./new-admin/:/var/www/html
    redis: 
        image: redis
        restart: always
