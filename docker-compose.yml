@@ -39,10 +39,6 @@ services:
           - ./nginx/access.log:/var/www/access.log
        depends_on: 
           - php-fpm
-   node:
-       image: node:latest
-       volumes: 
-          - ./new-admin/:/var/www/html
    redis: 
        image: redis
        restart: always

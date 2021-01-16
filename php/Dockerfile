@@ -9,8 +9,6 @@ deb http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib \n 
 deb-src http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib" > /etc/apt/sources.list \
 && apt-get update \
     && apt-get install -y \
-    nodejs \
-    npm \
     zip \
     unzip \
     libwebp-dev \
@@ -32,3 +30,5 @@ deb-src http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+RUN  curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    &&  apt-get install -y nodejs npm
