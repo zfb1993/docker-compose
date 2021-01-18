@@ -49,8 +49,11 @@ services:
       image: elasticsearch:7.10.1
       ports: 
           - "9200:9200"
-          - "9100:9100"
+          - "9300:9300"
       environment:
-          - discovery.seed_hosts=single
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+          - cluster.name=tommy-es
+          - bootstrap.memory_lock=true
+          - discovery.type=single-node
       volumes:
           - ./es-data:/usr/share/elasticsearch/data
