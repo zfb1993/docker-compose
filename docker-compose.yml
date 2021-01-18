@@ -26,6 +26,7 @@ services:
        tty: true
        depends_on: 
           - mysql
+          - elasticsearch
    nginx: 
        image: nginx
        restart: always
@@ -44,7 +45,12 @@ services:
        restart: always
        ports: 
           - "6379:6379"
-   # elasticsearch: 
-   #    image: elasticsearch:7.10.1
-   #    ports: 
-   #        - "9201:9200"
+   elasticsearch: 
+      image: elasticsearch:7.10.1
+      ports: 
+          - "9200:9200"
+          - "9100:9100"
+      environment:
+          - discovery.seed_hosts=single
+      volumes:
+          - ./es-data:/usr/share/elasticsearch/data
